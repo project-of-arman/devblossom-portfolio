@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -8,7 +7,8 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerTrigger
+  DrawerTrigger,
+  DrawerTitle,
 } from '@/components/ui/drawer';
 
 // Dynamically import icons
@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
             </ul>
           </nav>
           
-          {/* Mobile Navigation Drawer Trigger */}
+          {/* Mobile Navigation Drawer */}
           <div className="md:hidden">
             <Drawer open={open} onOpenChange={setOpen}>
               <DrawerTrigger asChild>
@@ -117,9 +117,9 @@ const Navbar: React.FC = () => {
               <DrawerContent className="h-[80vh] rounded-t-xl">
                 <div className="px-4 py-6 flex flex-col h-full">
                   <div className="flex items-center justify-between mb-6">
-                    <a href="#home" className="text-xl font-bold">
+                    <DrawerTitle className="text-xl font-bold">
                       <span className="text-primary">Dev</span>Portfolio
-                    </a>
+                    </DrawerTitle>
                     <DrawerClose asChild>
                       <button
                         className="rounded-full p-2 hover:bg-secondary"
