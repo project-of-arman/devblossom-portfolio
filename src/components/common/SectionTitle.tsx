@@ -21,18 +21,18 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
   };
 
   return (
-    <div className={`mb-12 ${alignmentClasses[alignment]}`}>
+    <div className={`mb-16 ${alignmentClasses[alignment]}`}>
       {subtitle && (
-        <div className="inline-block px-3 py-1 mb-3 text-xs font-medium uppercase rounded-full bg-accent text-accent-foreground animate-fade-in">
+        <div className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold uppercase rounded-full bg-accent/80 text-accent-foreground backdrop-blur-sm shadow-sm animate-fade-in">
           {subtitle}
         </div>
       )}
-      <h2 className="relative inline-block text-3xl font-bold md:text-4xl lg:text-5xl mb-4 animate-fade-in">
+      <h2 className="relative inline-block text-3xl font-bold md:text-4xl lg:text-5xl mb-5 animate-fade-in">
         {title}
-        <span className="absolute -bottom-2 left-0 w-full h-2 bg-accent/50 rounded-full -z-10 transform"></span>
+        <span className="absolute -bottom-3 left-0 w-full h-2 bg-accent/60 rounded-full -z-10 transform"></span>
       </h2>
       {description && (
-        <p className="max-w-2xl mx-auto text-muted-foreground animate-fade-in">
+        <p className="max-w-2xl mx-auto text-muted-foreground leading-relaxed animate-fade-in">
           {description}
         </p>
       )}

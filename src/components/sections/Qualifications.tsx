@@ -68,13 +68,13 @@ const Qualifications: React.FC = () => {
         />
         
         <div className="flex justify-center mt-12 mb-10">
-          <div className="inline-flex p-1 rounded-lg bg-secondary">
+          <div className="inline-flex p-1.5 rounded-xl bg-secondary/80 shadow-md backdrop-blur-sm">
             <button
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors",
+                "flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300",
                 activeTab === 'education'
-                  ? 'bg-white text-primary shadow-sm'
-                  : 'hover:bg-white/50'
+                  ? 'bg-white text-primary shadow-sm translate-y-[-2px]'
+                  : 'text-muted-foreground hover:bg-white/20'
               )}
               onClick={() => setActiveTab('education')}
             >
@@ -84,10 +84,10 @@ const Qualifications: React.FC = () => {
             
             <button
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors",
+                "flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300",
                 activeTab === 'experience'
-                  ? 'bg-white text-primary shadow-sm'
-                  : 'hover:bg-white/50'
+                  ? 'bg-white text-primary shadow-sm translate-y-[-2px]'
+                  : 'text-muted-foreground hover:bg-white/20'
               )}
               onClick={() => setActiveTab('experience')}
             >
@@ -97,27 +97,30 @@ const Qualifications: React.FC = () => {
           </div>
         </div>
         
-        <div className="max-w-3xl mx-auto relative">
+        <div className="max-w-4xl mx-auto relative pb-8">
           {/* Timeline line */}
-          <div className="absolute top-0 left-1/2 w-0.5 h-full bg-border transform -translate-x-1/2"></div>
+          <div className="absolute top-0 left-1/2 w-1 h-full bg-gradient-to-b from-primary/30 via-primary/70 to-primary/30 rounded-full transform -translate-x-1/2"></div>
           
-          <div className="space-y-8">
+          <div className="space-y-16">
             {activeData.map((item, index) => (
               <div 
                 key={index}
                 className={cn(
-                  "relative grid grid-cols-1 md:grid-cols-2 gap-4 p-4 animate-fade-in",
-                  index % 2 === 0 ? "md:text-right" : "md:text-left md:translate-x-full"
+                  "relative grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in",
+                  index % 2 === 0 ? "md:text-right" : "md:text-left"
                 )}
+                style={{ animationDelay: `${index * 150}ms` }}
               >
                 <div className={cn(
-                  "md:col-span-1",
-                  index % 2 !== 0 && "md:order-2"
+                  "md:col-span-1 p-6 rounded-xl backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:translate-y-[-5px]",
+                  index % 2 === 0 
+                    ? "md:pr-12 bg-white/5 border border-white/10" 
+                    : "md:order-2 md:pl-12 bg-white/10 border border-white/20"
                 )}>
+                  <span className="text-xs font-medium text-primary/80 tracking-wider uppercase mb-2 block">{item.duration}</span>
                   <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
                   <h4 className="text-primary font-medium mt-1">{item.organization}</h4>
-                  <p className="text-sm text-muted-foreground mt-1">{item.duration}</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
                 
                 <div className={cn(
@@ -128,7 +131,7 @@ const Qualifications: React.FC = () => {
                 </div>
                 
                 {/* Timeline dot */}
-                <div className="absolute top-5 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-2 border-white"></div>
+                <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md hover:scale-125 transition-transform duration-300"></div>
               </div>
             ))}
           </div>
