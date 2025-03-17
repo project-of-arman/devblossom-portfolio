@@ -8,6 +8,7 @@ interface ServiceCardProps {
   title: string;
   description: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -15,12 +16,16 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   title,
   description,
   className,
+  style,
 }) => {
   return (
-    <div className={cn(
-      "group relative p-6 rounded-xl shadow-sm border border-border/50 card-hover bg-card",
-      className
-    )}>
+    <div 
+      className={cn(
+        "group relative p-6 rounded-xl shadow-sm border border-border/50 card-hover bg-card",
+        className
+      )}
+      style={style}
+    >
       <div className="flex flex-col h-full">
         <div className="mb-5">
           <div className="p-3 inline-flex items-center justify-center rounded-xl bg-accent/50 text-primary transition-colors group-hover:bg-primary group-hover:text-white">

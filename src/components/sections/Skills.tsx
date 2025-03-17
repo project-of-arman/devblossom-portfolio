@@ -9,9 +9,10 @@ interface SkillGroupProps {
   skills: string[];
   level: 'expert' | 'comfortable' | 'familiar' | 'tools';
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const SkillGroup: React.FC<SkillGroupProps> = ({ title, skills, level, className }) => {
+const SkillGroup: React.FC<SkillGroupProps> = ({ title, skills, level, className, style }) => {
   const levelColors = {
     expert: 'bg-primary/10 border-primary/30',
     comfortable: 'bg-accent/20 border-accent/40',
@@ -20,11 +21,14 @@ const SkillGroup: React.FC<SkillGroupProps> = ({ title, skills, level, className
   };
   
   return (
-    <div className={cn(
-      "p-6 rounded-xl border shadow-sm transition-all hover:shadow-md",
-      levelColors[level],
-      className
-    )}>
+    <div 
+      className={cn(
+        "p-6 rounded-xl border shadow-sm transition-all hover:shadow-md",
+        levelColors[level],
+        className
+      )}
+      style={style}
+    >
       <h3 className="text-xl font-bold mb-4">{title}</h3>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
