@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react';
 import { GraduationCap, Briefcase } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface QualificationItem {
   title: string;
@@ -59,7 +59,14 @@ const Qualifications: React.FC = () => {
   const activeData = activeTab === 'education' ? education : experience;
 
   return (
-    <section id="qualifications" className="py-20 bg-secondary/30">
+    <motion.section 
+      id="qualifications" 
+      className="py-20 bg-secondary/30"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="container mx-auto px-4">
         <SectionTitle
           subtitle="My Journey"
@@ -69,7 +76,7 @@ const Qualifications: React.FC = () => {
         
         <div className="flex justify-center mt-12 mb-10">
           <div className="inline-flex p-1.5 rounded-xl bg-secondary/80 shadow-md backdrop-blur-sm">
-            <button
+            <motion.button
               className={cn(
                 "flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300",
                 activeTab === 'education'
@@ -77,12 +84,13 @@ const Qualifications: React.FC = () => {
                   : 'text-muted-foreground hover:bg-white/20'
               )}
               onClick={() => setActiveTab('education')}
+              whileTap={{ scale: 0.97 }}
             >
               <GraduationCap size={18} />
               <span>Education</span>
-            </button>
+            </motion.button>
             
-            <button
+            <motion.button
               className={cn(
                 "flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300",
                 activeTab === 'experience'
@@ -90,10 +98,11 @@ const Qualifications: React.FC = () => {
                   : 'text-muted-foreground hover:bg-white/20'
               )}
               onClick={() => setActiveTab('experience')}
+              whileTap={{ scale: 0.97 }}
             >
               <Briefcase size={18} />
               <span>Experience</span>
-            </button>
+            </motion.button>
           </div>
         </div>
         
@@ -103,13 +112,15 @@ const Qualifications: React.FC = () => {
           
           <div className="space-y-16">
             {activeData.map((item, index) => (
-              <div 
-                key={index}
+              <motion.div 
+                key={item.title}
                 className={cn(
-                  "relative grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in",
+                  "relative grid grid-cols-1 md:grid-cols-2 gap-8",
                   index % 2 === 0 ? "md:text-right" : "md:text-left"
                 )}
-                style={{ animationDelay: `${index * 150}ms` }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
               >
                 <div className={cn(
                   "md:col-span-1 p-6 rounded-xl backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:translate-y-[-5px]",
@@ -131,13 +142,19 @@ const Qualifications: React.FC = () => {
                 </div>
                 
                 {/* Timeline dot */}
-                <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md hover:scale-125 transition-transform duration-300"></div>
-              </div>
+                <motion.div 
+                  className="absolute top-6 left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: index * 0.1 + 0.2 }}
+                  whileHover={{ scale: 1.2 }}
+                ></motion.div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

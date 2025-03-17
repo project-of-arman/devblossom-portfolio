@@ -1,22 +1,37 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import SectionTitle from '../common/SectionTitle';
 import ProjectCard from '../common/ProjectCard';
 import { projects } from '@/data/projectsData';
+import { motion } from 'framer-motion';
 import { 
   Carousel, 
   CarouselContent, 
   CarouselItem, 
   CarouselNext, 
   CarouselPrevious 
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Portfolio: React.FC = () => {
   const isMobile = useIsMobile();
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   
   return (
-    <section id="portfolio" className="py-20 bg-secondary/30">
+    <motion.section 
+      id="portfolio" 
+      className="py-20 bg-secondary/30"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="container mx-auto px-4">
         <SectionTitle
           subtitle="My Work"
@@ -38,9 +53,18 @@ const Portfolio: React.FC = () => {
                   key={index} 
                   className={isMobile ? "pl-4 basis-full" : "pl-4 md:basis-1/2 lg:basis-1/3"}
                 >
-                  <div className="p-1">
-                    <ProjectCard {...project} />
-                  </div>
+                  <motion.div 
+                    className="p-1"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <ProjectCard 
+                      {...project} 
+                      onClick={() => setSelectedProject(project)}
+                    />
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -60,7 +84,61 @@ const Portfolio: React.FC = () => {
           </Carousel>
         </div>
       </div>
-    </section>
+
+      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="sm:max-w-[800px]">
+          {selectedProject && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedProject.title}</DialogTitle>
+                <DialogDescription>
+                  {selectedProject.description}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4">
+                <img 
+                  src={selectedProject.image} 
+                  alt={selectedProject.title}
+                  className="w-full h-[400px] object-cover rounded-lg"
+                />
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag, index) => (
+                    <span 
+                      key={index}
+                      className="px-3 py-1 text-sm font-medium rounded-full bg-accent/50 text-accent-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-6 flex justify-end gap-4">
+                  {selectedProject.githubUrl && (
+                    <a 
+                      href={selectedProject.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-secondary"
+                    >
+                      View Code
+                    </a>
+                  )}
+                  {selectedProject.liveUrl && (
+                    <a 
+                      href={selectedProject.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary"
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </motion.section>
   );
 };
 
