@@ -82,7 +82,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
       
       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-        <span className="p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm">
+        <span className="p-2 inline-block rounded-full bg-white/80 backdrop-blur-sm shadow-sm">
           <ArrowUpRight size={16} className="text-primary" />
         </span>
       </div>
