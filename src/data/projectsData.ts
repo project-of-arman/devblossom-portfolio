@@ -1,0 +1,51 @@
+
+export const projects = [
+  {
+    title: 'E-Commerce Dashboard',
+    description: 'A comprehensive admin dashboard for managing online stores with real-time analytics and inventory management.',
+    image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Chart.js'],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+  {
+    title: 'Social Media Platform',
+    description: 'A modern social networking application with real-time messaging, post sharing, and user interactions.',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    tags: ['Next.js', 'TypeScript', 'Node.js', 'MongoDB'],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+  {
+    title: 'Task Management App',
+    description: 'A productivity application for organizing tasks, projects, and deadlines with collaborative features.',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    tags: ['React', 'Redux', 'Express', 'PostgreSQL'],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+  {
+    title: 'Weather Forecast App',
+    description: 'A beautiful weather application with detailed forecasts, interactive maps, and personalized alerts.',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    tags: ['React Native', 'JavaScript', 'API Integration'],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+  {
+    title: 'AI Content Generator',
+    description: 'An intelligent content creation tool powered by machine learning for generating articles, social media posts, and more.',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    tags: ['Next.js', 'OpenAI', 'TailwindCSS', 'Vercel'],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+  {
+    title: 'Cryptocurrency Dashboard',
+    description: 'A real-time cryptocurrency tracking platform with portfolio management and market analysis tools.',
+    image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    tags: ['React', 'Web3.js', 'D3.js', 'Node.js'],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+];

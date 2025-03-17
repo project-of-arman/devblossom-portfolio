@@ -2,16 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Qualifications', href: '#qualifications' },
-  { name: 'Services', href: '#services' },
-  { name: 'Portfolio', href: '#portfolio' },
-  { name: 'Contact', href: '#contact' },
-];
+import { navLinks } from '@/data/navLinks';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,6 +36,12 @@ const Navbar: React.FC = () => {
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    // Prevent body scroll when menu is open
+    if (!isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   };
   
   return (
@@ -93,13 +90,16 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       
-      {/* Mobile menu */}
+      {/* Mobile menu with bottom-to-top animation */}
       <div className={cn(
-        "fixed inset-0 z-50 bg-white/95 backdrop-blur-md transition-transform duration-300 transform md:hidden",
-        isMenuOpen ? "translate-x-0" : "translate-x-full"
+        "fixed inset-0 z-50 bg-white/95 backdrop-blur-md transition-transform duration-500 transform md:hidden",
+        isMenuOpen ? "translate-y-0" : "translate-y-full"
       )}>
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex justify-end">
+        <div className="container mx-auto px-4 py-6 h-full flex flex-col">
+          <div className="flex justify-between items-center">
+            <a href="#home" className="text-xl font-bold">
+              <span className="text-primary">Dev</span>Portfolio
+            </a>
             <button 
               onClick={toggleMenu}
               className="p-2 rounded-md hover:bg-secondary"
@@ -109,10 +109,17 @@ const Navbar: React.FC = () => {
             </button>
           </div>
           
-          <nav className="mt-8">
+          <nav className="mt-8 flex-grow flex flex-col justify-center">
             <ul className="space-y-4">
-              {navLinks.map((link) => (
-                <li key={link.name}>
+              {navLinks.map((link, index) => (
+                <li 
+                  key={link.name} 
+                  style={{ 
+                    animationDelay: `${index * 100}ms`,
+                    opacity: 0,
+                    animation: isMenuOpen ? 'fade-in 0.5s ease forwards' : 'none'
+                  }}
+                >
                   <a 
                     href={link.href}
                     className={cn(
