@@ -1,10 +1,10 @@
 
 export const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Qualifications', href: '#qualifications' },
-  { name: 'Services', href: '#services' },
-  { name: 'Portfolio', href: '#portfolio' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '#home', icon: 'Home' },
+  { name: 'About', href: '#about', icon: 'User' },
+  { name: 'Skills', href: '#skills', icon: 'Code2' },
+  { name: 'Qualifications', href: '#qualifications', icon: 'GraduationCap' },
+  { name: 'Services', href: '#services', icon: 'Briefcase' },
+  { name: 'Portfolio', href: '#portfolio', icon: 'Laptop' },
+  { name: 'Contact', href: '#contact', icon: 'MailIcon' },
 ];
