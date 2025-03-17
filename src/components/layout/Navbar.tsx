@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { navLinks } from '@/data/navLinks';
-import dynamic from 'next/dynamic';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
   Drawer,
@@ -24,7 +23,7 @@ const Navbar: React.FC = () => {
   // Get Lucide icon by name
   const getIcon = (iconName: string) => {
     const Icon = (LucideIcons as any)[iconName];
-    return Icon ? <Icon size={20} /> : null;
+    return Icon ? <Icon size={isMobile ? 24 : 20} /> : null;
   };
   
   useEffect(() => {
@@ -115,9 +114,9 @@ const Navbar: React.FC = () => {
                   <Menu size={24} />
                 </button>
               </DrawerTrigger>
-              <DrawerContent className="h-[90vh] rounded-t-xl">
+              <DrawerContent className="h-[80vh] rounded-t-xl">
                 <div className="px-4 py-6 flex flex-col h-full">
-                  <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center justify-between mb-6">
                     <a href="#home" className="text-xl font-bold">
                       <span className="text-primary">Dev</span>Portfolio
                     </a>
@@ -132,9 +131,9 @@ const Navbar: React.FC = () => {
                   </div>
                   
                   <nav className="flex-grow overflow-y-auto pb-10">
-                    <ul className="space-y-2">
+                    <div className="grid grid-cols-2 gap-4">
                       {navLinks.map((link, index) => (
-                        <li 
+                        <div 
                           key={link.name}
                           style={{
                             animationDelay: `${index * 50}ms`,
@@ -145,23 +144,25 @@ const Navbar: React.FC = () => {
                           <a 
                             href={link.href}
                             className={cn(
-                              "flex items-center gap-3 p-4 rounded-lg transition-all",
+                              "flex flex-col items-center justify-center gap-2 p-4 rounded-lg text-center transition-all h-full",
                               activeSection === link.href.substring(1)
                                 ? "bg-primary/10 text-primary font-medium"
                                 : "hover:bg-secondary"
                             )}
                             onClick={closeDrawer}
                           >
-                            {getIcon(link.icon)}
-                            <span>{link.name}</span>
+                            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-secondary">
+                              {getIcon(link.icon)}
+                            </div>
+                            <span className="text-sm font-medium">{link.name}</span>
                             
                             {activeSection === link.href.substring(1) && (
-                              <ChevronRight className="ml-auto text-primary" size={16} />
+                              <span className="w-2 h-2 bg-primary rounded-full absolute top-2 right-2" />
                             )}
                           </a>
-                        </li>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </nav>
                   
                   <div className="pt-4 border-t border-border">
