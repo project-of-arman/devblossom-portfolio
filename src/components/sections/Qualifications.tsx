@@ -108,7 +108,15 @@ const Qualifications: React.FC = () => {
         
         <div className="max-w-4xl mx-auto relative pb-8">
           {/* Timeline line */}
-          <div className="absolute left-1/2 w-px h-full bg-gradient-to-b from-primary/30 via-primary/70 to-primary/30 transform -translate-x-1/2"></div>
+          <div 
+            className={cn(
+              "absolute left-1/2 w-[2px] h-full transform -translate-x-1/2",
+              "bg-gradient-to-b from-primary/10 via-primary to-primary/10",
+              "after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0",
+              "after:bg-gradient-to-b after:from-transparent after:via-white/20 after:to-transparent",
+              "after:animate-pulse-slow"
+            )}
+          />
           
           <div className="space-y-16">
             {activeData.map((item, index) => (
@@ -143,12 +151,19 @@ const Qualifications: React.FC = () => {
                 
                 {/* Timeline dot */}
                 <motion.div 
-                  className="absolute left-1/2 top-6 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md transform -translate-x-1/2"
+                  className="absolute left-1/2 top-8 -translate-x-1/2"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: index * 0.1 + 0.2 }}
                   whileHover={{ scale: 1.2 }}
-                ></motion.div>
+                >
+                  <div className="relative flex items-center justify-center">
+                    {/* Outer ring with pulse animation */}
+                    <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+                    {/* Inner dot */}
+                    <div className="w-4 h-4 rounded-full bg-primary border-[3px] border-background shadow-md" />
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
