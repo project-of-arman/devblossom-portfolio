@@ -108,14 +108,14 @@ const Qualifications: React.FC = () => {
         
         <div className="max-w-4xl mx-auto relative pb-8">
           {/* Timeline line */}
-          <div className="absolute top-0 left-1/2 w-1 h-full bg-gradient-to-b from-primary/30 via-primary/70 to-primary/30 rounded-full transform -translate-x-1/2"></div>
+          <div className="absolute left-1/2 w-px h-full bg-gradient-to-b from-primary/30 via-primary/70 to-primary/30 transform -translate-x-1/2"></div>
           
           <div className="space-y-16">
             {activeData.map((item, index) => (
               <motion.div 
                 key={item.title}
                 className={cn(
-                  "relative grid grid-cols-1 md:grid-cols-2 gap-8",
+                  "relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16",
                   index % 2 === 0 ? "md:text-right" : "md:text-left"
                 )}
                 initial={{ opacity: 0, y: 20 }}
@@ -143,7 +143,7 @@ const Qualifications: React.FC = () => {
                 
                 {/* Timeline dot */}
                 <motion.div 
-                  className="absolute top-6 left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md"
+                  className="absolute left-1/2 top-6 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md transform -translate-x-1/2"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: index * 0.1 + 0.2 }}
